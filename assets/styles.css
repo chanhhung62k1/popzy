@@ -234,12 +234,6 @@ blockquote {
   text-decoration: underline;
 }
 
-.wrapper {
-  position: fixed;
-  inset: 0;
-  overflow-y: auto;
-}
-
 .container {
   margin-right: auto;
   margin-left: auto;
