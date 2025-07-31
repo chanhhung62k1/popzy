@@ -235,7 +235,7 @@ Popzy.prototype.open = function () {
 
   // Chặn scroll body
 
-  if (Modal.stack.length === 1 && this.opts.enableScrollLock) {
+  if (Popzy.stack.length === 1 && this.opts.enableScrollLock) {
     const target = this.opts.scrollLockTarget();
     if (this._hasScrollBarWith(target)) {
       target.classList.add("popzy__no-scroll");
