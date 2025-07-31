@@ -31,18 +31,18 @@ function Popzy(options = {}) {
       destroyOnclose: true, // Modal có bị xóa khỏi DOM sau khi đóng không
       classCss: [], // Các class CSS tùy chọn cho modal
       footer: false, // Có hiển thị footer không
-      closeMethod: ["button", "backdrop", "escape"], // Cách đóng modal
+      closeMethods: ["button", "backdrop", "escape"], // Cách đóng modal
       enableScrollLock: true,
       scrollLockTarget: () => document.body,
     },
     options
   );
 
-  const { closeMethod } = this.opts;
+  const { closeMethods } = this.opts;
   // Kiểm tra phương thức đóng nào được cho phép
-  this._allowButton = closeMethod.includes("button");
-  this._allowBackdrop = closeMethod.includes("backdrop");
-  this._allowEscape = closeMethod.includes("escape");
+  this._allowButton = closeMethods.includes("button");
+  this._allowBackdrop = closeMethods.includes("backdrop");
+  this._allowEscape = closeMethods.includes("escape");
 
   // Mảng chứa các nút trong footer
   this._footerButtons = [];
@@ -235,7 +235,7 @@ Popzy.prototype.open = function () {
 
   // Chặn scroll body
 
-  if (this.opts.enableScrollLock) {
+  if (Modal.stack.length === 1 && this.opts.enableScrollLock) {
     const target = this.opts.scrollLockTarget();
     if (this._hasScrollBarWith(target)) {
       target.classList.add("popzy__no-scroll");

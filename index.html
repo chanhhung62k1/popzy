@@ -52,10 +52,7 @@
 
       <p>Here are some examples of how to use Popzy:</p>
 
-      <button
-        id="basic-modal"
-        class="btn btn--primary btn-demo js-popzy-modal-1"
-      >
+      <button class="btn btn--primary btn-demo js-popzy-modal-1">
         Basic Modal
       </button>
       <button class="btn btn--secondary btn-demo js-popzy-modal-2">
@@ -432,18 +429,137 @@ modal.close();</code></pre>
       // Highlight code
       hljs.initHighlightingOnLoad();
 
-      const modal = new Popzy({
-        content: "<p>HUỲNH TRẦN CHÁNH HƯNG </p>",
-        footer: true,
-        enableScrollLock: true,
+      const modal1 = new Popzy({
+        content: `<h1>Basic Modal</h1>
+        <p>This is a simple modal. You can customize its content as per your requirements</p>`,
       });
 
-      modal.addFooterButton("Cancel", "", function (e) {});
+      window.addEventListener("load", (event) => {
+        const buttonBasic = document.querySelector(".js-popzy-modal-1");
+        buttonBasic.addEventListener("click", () => {
+          modal1.open();
+        });
+      });
+
+      const modal2 = new Popzy({
+        content: `<h1>Modal With Buttons</h1>
+        <p>This is a simple modal. You can customize its content as per your requirements</p>`,
+        footer: true,
+      });
+
+      modal2.addFooterButton("Cancel", "modal-btn", () => {
+        modal2.close();
+      });
+
+      modal2.addFooterButton("Confirm", "modal-btn primary", () => {
+        console.log("Making something!!!!");
+        modal2.close();
+      });
 
       window.addEventListener("load", (event) => {
-        const buttonBasic = document.querySelector("#basic-modal");
+        const modalWithButtons = document.querySelector(".js-popzy-modal-2");
+        modalWithButtons.addEventListener("click", () => {
+          modal2.open();
+        });
+      });
+
+      const modal3 = new Popzy({
+        content: `<h1>Large Content Modal</h1>
+                    <p>This modal contains a large amount of content, suitable for displaying extended text or information.</p>
+                    <p>Please scroll down to view the entire content.</p>
+                    <p>The content can include multiple paragraphs, images, or other detailed information.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                `,
+      });
+
+      modal3.addFooterButton("Cancel", "modal-btn", () => {
+        modal3.close();
+      });
+
+      modal3.addFooterButton("Confirm", "modal-btn primary", () => {
+        console.log("Making something!!!!");
+        modal3.close();
+      });
+
+      window.addEventListener("load", (event) => {
+        const largeContentModal = document.querySelector(".js-popzy-modal-3");
+        largeContentModal.addEventListener("click", () => {
+          modal3.open();
+        });
+      });
+
+      const modal4 = new Popzy({
+        content: `<h1>Basic Modal</h1>
+        <p>This is a simple modal. You can customize its content as per your requirements</p>`,
+        footer: true,
+        closeMethods: [],
+      });
+
+      modal4.addFooterButton("Cancel", "btn primary", () => {
+        modal4.close();
+      });
+
+      window.addEventListener("load", (event) => {
+        const buttonBasic = document.querySelector(".js-popzy-modal-4");
         buttonBasic.addEventListener("click", () => {
-          modal.open();
+          modal4.open();
+        });
+      });
+
+      const modal5 = new Popzy({
+        content: `
+                    <h1>Persistent Modal</h1>
+                    <p>This modal stays in the DOM even after being closed, allowing you to reopen it without losing any changes.</p>
+                    <p>You can write something in the input below, close the modal, and reopen it to see the content still intact.</p>
+                    <input type="text" placeholder="Type something here..." class="modal-input" style="width: 100%; padding: 10px; margin-top: 10px;" />
+                `,
+        destroyOnclose: false,
+      });
+
+      window.addEventListener("load", (event) => {
+        const stayInDom = document.querySelector(".js-popzy-modal-5");
+        stayInDom.addEventListener("click", () => {
+          modal5.open();
+        });
+      });
+
+      const modal6 = new Popzy({
+        content: `
+                    <h1>Persistent Modal</h1>
+                    <p>This modal stays in the DOM even after being closed, allowing you to reopen it without losing any changes.</p>
+                    <p>You can write something in the input below, close the modal, and reopen it to see the content still intact.</p>
+                    <button class="btn" onclick ="modal1.open()">Open Modal Basic</button>
+                `,
+      });
+
+      window.addEventListener("load", (event) => {
+        const stayInDom = document.querySelector(".js-popzy-modal-6");
+        stayInDom.addEventListener("click", () => {
+          modal6.open();
+        });
+      });
+
+      const modal7 = new Popzy({
+        content: `
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/RDfwGkasp58?si=8-vbt0c1c7kaXf6j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                `,
+      });
+
+      window.addEventListener("load", (event) => {
+        const embedLinkYoutubeBTn = document.querySelector(".js-popzy-modal-7");
+        embedLinkYoutubeBTn.addEventListener("click", () => {
+          modal7.open();
         });
       });
     </script>
